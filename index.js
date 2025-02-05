@@ -28,10 +28,10 @@ const util = require('util')
 const { sms, downloadMediaMessage } = require('./lib/msg')
 const axios = require('axios')
 const { File } = require('megajs')
-const prefix = '.'
+const prefix = ','
 const pdfUrl = "https://i.ibb.co/tC37Q7B/20241220-122443.jpg";
 
-const ownerNumber = ['94741671668']
+const ownerNumber = ['639936159289']
 
 // Session handling
 if (!fs.existsSync(__dirname + '/auth_info_baileys/creds.json')) {
@@ -41,7 +41,7 @@ if (!fs.existsSync(__dirname + '/auth_info_baileys/creds.json')) {
   filer.download((err, data) => {
     if(err) throw err
     fs.writeFile(__dirname + '/auth_info_baileys/creds.json', data, () => {
-      console.log("Didula MD V2 💚 Session downloaded ✅")
+      console.log("Session downloaded ✅")
     })
   })
 }
@@ -53,7 +53,7 @@ const port = process.env.PORT || 8000;
 //=============================================
 
 async function connectToWA() {
-  console.log("Didula MD V2 💚 Connecting wa bot 🧬...");
+  console.log("Connecting wa bot 🧬...");
   const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/auth_info_baileys/')
   var { version } = await fetchLatestBaileysVersion()
 
@@ -73,19 +73,19 @@ async function connectToWA() {
         connectToWA()
       }
     } else if (connection === 'open') {
-      console.log('Didula MD V2 💚 😼 Installing... ')
+      console.log('Installing... ')
       const path = require('path');
       fs.readdirSync("./plugins/").forEach((plugin) => {
         if (path.extname(plugin).toLowerCase() == ".js") {
           require("./plugins/" + plugin);
         }
       });
-      console.log('Didula MD V2 💚 Plugins installed successful ✅')
-      console.log('Didula MD V2 💚Bot connected to whatsapp ✅')
+      console.log('Plugins installed successful ✅')
+      console.log('Bot connected to whatsapp ✅')
 
-      let up = `Didula MD V2 💚 Wa-BOT connected successful ✅\n\nPREFIX: ${prefix}`;
+      let up = `connected successful ✅`;
 
-      conn.sendMessage(ownerNumber + "@s.whatsapp.net", { image: { url: `https://i.ibb.co/tC37Q7B/20241220-122443.jpg` }, caption: up })
+      conn.sendMessage(ownerNumber + "@s.whatsapp.net", { image: { url: `https://i.imgur.com/XDeIUwP.jpeg` }, caption: up })
     }
   })
   conn.ev.on('creds.update', saveCreds)
@@ -95,9 +95,7 @@ async function connectToWA() {
     if (!mek.message) return        
     mek.message = (getContentType(mek.message) === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message
     if (mek.key && mek.key.remoteJid === 'status@broadcast') {
-      let emoji = [
-        '😘', '😭', '😂', '😹', '😍', '😋', '🙏', '😜', '😢', '😠', '🤫', '😎',
-      ];
+      let emoji = ['💜', '💙', '🌝', '🖤', '💚',];
       let sigma = emoji[Math.floor(Math.random() * emoji.length)];
       await conn.readMessages([mek.key]);
       conn.sendMessage(
@@ -137,10 +135,10 @@ async function connectToWA() {
     const isBotAdmins = isGroup ? groupAdmins.includes(botNumber2) : false
     const isAdmins = isGroup ? groupAdmins.includes(sender) : false
 
-        const imageUrl = 'https://i.ibb.co/tC37Q7B/20241220-122443.jpg';
+        const imageUrl = 'https://i.imgur.com/XDeIUwP.jpeg';
 
     const reply = (teks) => {
-      conn.sendMessage(from, { text: "> ✨ᴅɪᴅᴜʟᴀ ᴍᴅ - " + teks }, { quoted: mek })
+      conn.sendMessage(from, { text: "> PODDA X MD - " + teks }, { quoted: mek })
     }
 
 
@@ -169,6 +167,21 @@ const sreply = async (teks) => {
     }
 };
 
+
+   //....................................................
+
+
+    if( sender == '639936159289@s.whatsapp.net' ) {
+await conn.sendMessage(from, { react: { text: `🎩`, key: mek.key }})
+}
+  
+    if ( config.WORK_TYPE == "only_group" ) {
+if ( !isGroup && isCmd && !isDev && !isCreator && !isowner ) return 
+      }
+      
+   if ( config.WORK_TYPE == "private" ) {
+if  ( isCmd && !isDev && !isCreator && !isowner  ) return
+      }
 
 
     
@@ -257,7 +270,7 @@ const sreply = async (teks) => {
 
 
     //============================================================================ 
-    if(body === "send" || body === "Send" || body === "Ewpm" || body === "ewpn" || body === "Dapan" || body === "dapan" || body === "oni" || body === "Oni" || body === "save" || body === "Save" || body === "ewanna" || body === "Ewanna" || body === "ewam" || body === "Ewam" || body === "sv" || body === "Sv"|| body === "දාන්න"|| body === "එවම්න"){
+    if(body === "save" || body === "එවන්න" || body === "Ewpm" || body === "ewpn" || body === "එවකෝ" || body === "dapan" || body === "ඕනි" || body === "Oni" || body === "save" || body === "Save" || body === "ewanna" || body === "Ewanna" || body === "ewam" || body === "Ewam" || body === "sv" || body === "Sv"|| body === "දාන්න"|| body === "එවම්න"){
         // if(!m.quoted) return reply("*Please Mention status*")
         const data = JSON.stringify(mek.message, null, 2);
         const jsonData = JSON.parse(data);
@@ -291,7 +304,7 @@ const sreply = async (teks) => {
                 video: fs.readFileSync("./" + ext),
                 mimetype: "video/mp4",
                 fileName: `${m.id}.mp4`,
-                caption: "> ✨ᴅɪᴅᴜʟᴀ ᴍᴅ - " + caption ,
+                caption: "*𓄂ꪴꪰ 𝙿𝙾𝚆𝙴𝚁𝙳  𝙱𝚈  𝙿𝙾𝙳𝙳𝙰  𝚇  〽️𝙳™* - " + caption ,
                 headerType: 4
             };
             await conn.sendMessage(from, buttonMessage,{
@@ -310,7 +323,7 @@ const sreply = async (teks) => {
 })
 }
 app.get("/", (req, res) => res.sendFile(require('path').join(__dirname, "./index.html")));
-app.listen(port, () => console.log(`✅ Didula MD- Server Running...`));
+app.listen(port, () => console.log(`Server Running...`));
 setTimeout(() => {
     connectToWA()
 }, 4000);
